@@ -22,4 +22,4 @@ python filename
 ```
 
 ## Notes
-N/A
+Simulation takes time. Change run_time variable for faster sims and shorter videos.
