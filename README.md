@@ -1,2 +1,25 @@
 # Neuromechfly-CSCI-401
-Testing neuromechfly
+Testing neuromechfly with cases.
+
+## Available Cases
+Olfaction with attractive and aversive odor source.
+Integration of olfaction with attractive odor source and vison with obstacle.
+
+## Next Steps
+Make a case of vison with target or with both target and obstacle.
+
+## How to Setup
+```sh
+conda create -n envname python=3.10 anaconda
+conda activate envname
+pip install flygym
+pip install flyvis
+```
+
+## How to Run
+```sh
+python filename
+```
+
+## Notes
+N/A
