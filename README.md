@@ -6,7 +6,7 @@ Testing neuromechfly with cases.
 - Integration of olfaction with attractive odor source and vison with obstacle.
 
 ## Next Steps
-Make a case of vison with target or with both target and obstacle.
+Make movable odor source as cooperated with MineRL
 
 ## How to Setup
 ```sh
