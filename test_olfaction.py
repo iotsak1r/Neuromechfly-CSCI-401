@@ -71,7 +71,6 @@ for t in range(1000):
         action['forward'] = 0
         action['back'] = 1
     action['jump'] = 0
-    # if fly_speed > 0 and last_move_distance < 1e-3: action['jump'] = 1  # jump if obstacle in front
 
     obs, reward, done, info = env.step(action)
     if 'position' in info:
