@@ -1,12 +1,12 @@
 # Neuromechfly-CSCI-401
 Testing neuromechfly with cases.
 
-## Available Cases
+## Available Cases in the Sandbox
 - Olfaction with attractive and aversive odor source.
 - Integration of olfaction with attractive odor source and vison with obstacle.
 
-## Next Steps
-Make movable odor source as cooperated with MineRL
+## Available Cases in the MineRL Environment
+- Olfaction with villagers as attractive source.
 
 ## How to Setup
 ```sh
