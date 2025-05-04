@@ -38,6 +38,7 @@ Refer to [neuromechcraft](https://github.com/jason-s-yu/neuromechcraft)
 
 ## Scripts Breakdown
 1. olfaction_mechfly.py
+   
     - Purpose: Standalone sandbox simulation of MechFly navigating in response to two odor sources (one attractive, one aversive).
     - Logging: Opens simulation_log.csv in the working directory and writes at each step:
     ```sh
@@ -52,11 +53,13 @@ Refer to [neuromechcraft](https://github.com/jason-s-yu/neuromechcraft)
     - Output plots (saved under outputs/olfaction_simulation):
       - agent.png: X–Z trajectories of agent and odor sources.
       - odor.png: Odor intensity vs. simulation step.
+
 2. olf_vis_integration_mechfly.py
     - Purpose: Extends the above with a basic vision module to avoid obstacles.
     - Vision module: Sends out rays or checks a proximity threshold; if an obstacle is detected, the agent computes an avoidance vector orthogonal to its heading.
     - Decision fusion: Weighted sum of olfactory heading and obstacle‐avoidance vector.
     - Logging & visualization: Same CSV logger and plotting routines as in olfaction_mechfly.py.
+
 3. olfaction_mineRL_integration_test.py
     - Purpose: Work‐in‐progress integration of Neuromechfly olfaction with a MineRL Basalt task (CreateVillageAnimalPen-v0), using villagers as odor sources.
     - Current behavior:
@@ -69,6 +72,7 @@ Refer to [neuromechcraft](https://github.com/jason-s-yu/neuromechcraft)
       2. Python script loads these positions with json.load(...), computes intensities, and updates MechFlySimulator state.
       3. New action (camera yaw, forward/back) is issued back to MineRL.
     - Status: Integration test harness is in place; JSON‐I/O and shared‐state synchronization remain under development.
+
 4. test_olfaction.py
     - Purpose: Unit tests for core olfactory navigation routines.
     - Coverage:
