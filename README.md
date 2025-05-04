@@ -38,20 +38,20 @@ Refer to [neuromechcraft](https://github.com/jason-s-yu/neuromechcraft)
 
 ## Scripts Breakdown
 1. olfaction_mechfly.py
-- Purpose: Standalone sandbox simulation of MechFly navigating in response to two odor sources (one attractive, one aversive).
-- Logging: Opens simulation_log.csv in the working directory and writes at each step:
-```sh
-time,fly_x,fly_y,fly_z,odor_x,odor_y,odor_z,intensity
-```
-- Movement policy (MechFlySimulator.update):
-  1. Compare current  to last recorded intensity:
-     - If weaker, randomly perturb heading by ±45°.
-     - Otherwise, maintain heading.
-  2. Set speed proportional to  (clamped to [0.25, 1.0]).
-  3. Return speed for forward movement.
-- Output plots (saved under outputs/olfaction_simulation):
-  - agent.png: X–Z trajectories of agent and odor sources.
-  - odor.png: Odor intensity vs. simulation step.
+    - Purpose: Standalone sandbox simulation of MechFly navigating in response to two odor sources (one attractive, one aversive).
+    - Logging: Opens simulation_log.csv in the working directory and writes at each step:
+    ```sh
+    time,fly_x,fly_y,fly_z,odor_x,odor_y,odor_z,intensity
+    ```
+    - Movement policy (MechFlySimulator.update):
+      1. Compare current  to last recorded intensity:
+         - If weaker, randomly perturb heading by ±45°.
+         - Otherwise, maintain heading.
+      2. Set speed proportional to  (clamped to [0.25, 1.0]).
+      3. Return speed for forward movement.
+    - Output plots (saved under outputs/olfaction_simulation):
+      - agent.png: X–Z trajectories of agent and odor sources.
+      - odor.png: Odor intensity vs. simulation step.
 2. olf_vis_integration_mechfly.py
 - Purpose: Extends the above with a basic vision module to avoid obstacles.
 - Vision module: Sends out rays or checks a proximity threshold; if an obstacle is detected, the agent computes an avoidance vector orthogonal to its heading.
