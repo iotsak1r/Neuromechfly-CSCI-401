@@ -10,10 +10,10 @@ Neuromechfly-CSCI-401 is a research codebase demonstrating the integration of ol
 ├── olf_vis_integration_mechfly.py
 ├── olfaction_mineRL_integration_test.py
 ├── test_olfaction.py
-├── 0.4.4_mods/                   # Custom MineRL integration
+├── 0.4.4_mods/
 │   ├── Villagertracker-1.0.jar   # MineRL 0.4.4 mod for villager tracking
 │   └── Villagertracker.java      # Source for the villager tracker mod
-├── 1.0.2_mods/                   # Custom MineRL integration
+├── 1.0.2_mods/
 │   ├── Villagertracker-1.0.jar   # MineRL 1.0.2 mod for villager tracking
 │   ├── villager_positions.json   # JSON file recording villager position
 │   └── Villagertracker.java      # Source for the villager tracker mod
