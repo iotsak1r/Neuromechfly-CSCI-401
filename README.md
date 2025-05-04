@@ -22,7 +22,7 @@ pip install flygym
 pip install flyvis
 ```
 
-- For Cases in the MineRL Environment
+- For Cases in the MineRL Environment<br>
 It is tested in MineRL 1.0.2 and 0.4.4 version
 [neuromechfly 0.4.4 instruction](https://github.com/jason-s-yu/neuromechcraft)
 
