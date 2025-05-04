@@ -41,7 +41,10 @@ Refer to [neuromechcraft](https://github.com/jason-s-yu/neuromechcraft)
 - Purpose: Standalone sandbox simulating MechFly movement driven by two odor sources (one attractive, one aversive).
 - Key Components:
   - odor positions perform a constrained random walk in 3D space.
-3. olf_vis_integration_mechfly.py
+  - MechFlySimulator.heading updated using a simple gradient-based rule: turn randomly when the odor signal weakens, otherwise advance up-gradient.
+  - Real-time logging of positions and odor intensities to simulation_log.csv.
+  - Post-run plotting of trajectories (agent.png) and odor intensity versus time (odor.png).
+2. olf_vis_integration_mechfly.py
 4. olfaction_mineRL_integration_test.py
 5. test_olfaction.py
 
