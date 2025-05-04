@@ -14,6 +14,7 @@ Testing neuromechfly with cases.
 ## How to Setup
 
 - For Cases in the Sandbox
+
 They are only tested in MineRL 1.0.2 version
 ```sh
 conda create -n envname python=3.10 anaconda
@@ -23,6 +24,7 @@ pip install flyvis
 ```
 
 - For Cases in the MineRL Environment<br>
+
 It is tested in MineRL 1.0.2 and 0.4.4 version
 [neuromechfly 0.4.4 instruction](https://github.com/jason-s-yu/neuromechcraft)
 
