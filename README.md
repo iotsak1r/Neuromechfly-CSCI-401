@@ -53,28 +53,28 @@ Refer to [neuromechcraft](https://github.com/jason-s-yu/neuromechcraft)
       - agent.png: X–Z trajectories of agent and odor sources.
       - odor.png: Odor intensity vs. simulation step.
 2. olf_vis_integration_mechfly.py
-- Purpose: Extends the above with a basic vision module to avoid obstacles.
-- Vision module: Sends out rays or checks a proximity threshold; if an obstacle is detected, the agent computes an avoidance vector orthogonal to its heading.
-- Decision fusion: Weighted sum of olfactory heading and obstacle‐avoidance vector.
-- Logging & visualization: Same CSV logger and plotting routines as in olfaction_mechfly.py.
+    - Purpose: Extends the above with a basic vision module to avoid obstacles.
+    - Vision module: Sends out rays or checks a proximity threshold; if an obstacle is detected, the agent computes an avoidance vector orthogonal to its heading.
+    - Decision fusion: Weighted sum of olfactory heading and obstacle‐avoidance vector.
+    - Logging & visualization: Same CSV logger and plotting routines as in olfaction_mechfly.py.
 3. olfaction_mineRL_integration_test.py
-- Purpose: Work‐in‐progress integration of Neuromechfly olfaction with a MineRL Basalt task (CreateVillageAnimalPen-v0), using villagers as odor sources.
-- Current behavior:
-  - Launches a MineRL environment and steps through it using gradient‐based headings, but does not yet read/write villager_positions.json. JSON I/O is WIP.
-- Intended workflow:
-  1. Villagertracker mod writes /run/villager_positions.json each server tick:
-     ```sh
-     [{"name":"Villager","x":...,"y":...,"z":...}, ...]
-     ```
-  2. Python script loads these positions with json.load(...), computes intensities, and updates MechFlySimulator state.
-  3. New action (camera yaw, forward/back) is issued back to MineRL.
-- Status: Integration test harness is in place; JSON‐I/O and shared‐state synchronization remain under development.
+    - Purpose: Work‐in‐progress integration of Neuromechfly olfaction with a MineRL Basalt task (CreateVillageAnimalPen-v0), using villagers as odor sources.
+    - Current behavior:
+      - Launches a MineRL environment and steps through it using gradient‐based headings, but does not yet read/write villager_positions.json. JSON I/O is WIP.
+    - Intended workflow:
+      1. Villagertracker mod writes /run/villager_positions.json each server tick:
+         ```sh
+         [{"name":"Villager","x":...,"y":...,"z":...}, ...]
+         ```
+      2. Python script loads these positions with json.load(...), computes intensities, and updates MechFlySimulator state.
+      3. New action (camera yaw, forward/back) is issued back to MineRL.
+    - Status: Integration test harness is in place; JSON‐I/O and shared‐state synchronization remain under development.
 4. test_olfaction.py
-- Purpose: Unit tests for core olfactory navigation routines.
-- Coverage:
-  - Intensity computation correctness.
-  - Heading perturbation on signal drop.
-  - Speed clamping behavior.
+    - Purpose: Unit tests for core olfactory navigation routines.
+    - Coverage:
+      - Intensity computation correctness.
+      - Heading perturbation on signal drop.
+      - Speed clamping behavior.
 
 ## Neuromechfly Olfaction & Movement Principles
 1. Odor dispersion model: Exponential decay with distance (), optionally with Gaussian noise to simulate sensor unreliability.
