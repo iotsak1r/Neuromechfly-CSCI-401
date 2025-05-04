@@ -8,13 +8,23 @@ Testing neuromechfly with cases.
 ## Available Cases in the MineRL Environment
 - Olfaction with villagers as attractive source.
 
+## Available Mods
+- The mod to find villagers' position and write into a json file.
+
 ## How to Setup
+
+- For Cases in the Sandbox
+They are only tested in MineRL 1.0.2 version
 ```sh
 conda create -n envname python=3.10 anaconda
 conda activate envname
 pip install flygym
 pip install flyvis
 ```
+
+- For Cases in the MineRL Environment
+It is tested in MineRL 1.0.2 and 0.4.4 version
+[neuromechfly 0.4.4 instruction](https://github.com/jason-s-yu/neuromechcraft)
 
 ## How to Run
 ```sh
