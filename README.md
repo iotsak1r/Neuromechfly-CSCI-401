@@ -67,17 +67,17 @@ Refer to [neuromechcraft](https://github.com/jason-s-yu/neuromechcraft)
       - Spawns Fly with both enable_vision=True and enable_olfaction=True.
       - Attaches a fixed‐camera bird’s‐eye view.
     - Fusion & Control:
-      1. Olfaction: same bias b as in olfaction_mechfly.py.
-      2. Vision:
+      - Olfaction: same bias b as in olfaction_mechfly.py.
+      - Vision:
         - Compute mean brightness in left/right retina images.
         - vision_bias = G_vis * (B_left - B_right) / B_mean.
-      3. Combined bias:
+      - Combined bias:
          
         ```sh
         combined_bias = tanh(olfaction_bias + vision_bias)
         ```
       
-      4. Turning & movement: map combined_bias to motor commands and step the physics.
+      - Turning & movement: map combined_bias to motor commands and step the physics.
     - Outputs:
       - initial_setup.png: arena layout with obstacles & odor source.
       - fly_trajectory.png: 2D scatter of fly path vs. odor & obstacles.
@@ -106,14 +106,14 @@ Refer to [neuromechcraft](https://github.com/jason-s-yu/neuromechcraft)
       - agent.png: X–Z trajectory of agent vs odor source.
       - odor.png: odor‐intensity vs simulation step.
     - Intended workflow (WIP):
-      1. VillagerTracker mod writes /run/villager_positions.json each server tick:
+      - VillagerTracker mod writes /run/villager_positions.json each server tick:
       
         ```sh
         [{"name":"Villager","x":…,"y":…,"z":…}, …]
         ```
       
-      2. Script reads that JSON (json.load(...)), computes per‑villager intensities, updates MechFlySimulator.
-      3. Issues new MineRL actions for closed‑loop integration.
+      - Script reads that JSON (json.load(...)), computes per‑villager intensities, updates MechFlySimulator.
+      - Issues new MineRL actions for closed‑loop integration.
 
 4. test_olfaction.py
     - Purpose: Prototype MineRL integration harness; not true unit tests.
@@ -129,10 +129,10 @@ Refer to [neuromechcraft](https://github.com/jason-s-yu/neuromechcraft)
       - Initializes fly_position & a wandering 3D odor_position.
       - Configurable decay_rate and optional noise.
     - Control loop (up to 1000 steps):
-      1. Odor movement: Random walk for odor_position (with simple obstacle‐jump stub).
-      2. Intensity: exp(-decay_rate·distance) ± noise.
-      3. MechFly update: Same ±45° logic & speed clamp to [0.25, 1.0].
-      4. MineRL action:
+      - Odor movement: Random walk for odor_position (with simple obstacle‐jump stub).
+      - Intensity: exp(-decay_rate·distance) ± noise.
+      - MechFly update: Same ±45° logic & speed clamp to [0.25, 1.0].
+      - MineRL action:
       
         ```sh
         action = env.action_space.no_op()
@@ -142,9 +142,9 @@ Refer to [neuromechcraft](https://github.com/jason-s-yu/neuromechcraft)
         obs, reward, done, info = env.step(action)
         ```
       
-      5. Render & position update: Uses info['position'] if available; else approximates.
-      6. Sync & log: Sleeps to cap at 20 FPS, writes to simulation_log.csv, and appends to in‑memory trajectories.
-      7. Break on done.
+      - Render & position update: Uses info['position'] if available; else approximates.
+      - Sync & log: Sleeps to cap at 20 FPS, writes to simulation_log.csv, and appends to in‑memory trajectories.
+      - Break on done.
     - Visualization:
       - After env.close(), converts trajectories to NumPy, and:
         - Plots X–Z agent vs. odor → outputs/agent.png.
