@@ -48,12 +48,12 @@ Refer to [neuromechcraft](https://github.com/jason-s-yu/neuromechcraft)
     - Control loop:
       - Stabilization: 500 steps of zero control to settle the fly.
       - Decision: At each interval, read obs["odor_intensity"] for attractive and aversive channels, reshape into (2 sensor types × 2 sides), compute weighted averages, then asymmetry bias:
-<!-- -->
-      ```sh
-      attractive_bias = G_attr * (I_left - I_right) / I_mean
-      aversive_bias   = G_ave * (I_left - I_right) / I_mean
-      b = tanh((attractive_bias + aversive_bias)**2) * sign(attr+ave)
-      ```
+
+        ```sh
+        attractive_bias = G_attr * (I_left - I_right) / I_mean
+        aversive_bias   = G_ave * (I_left - I_right) / I_mean
+        b = tanh((attractive_bias + aversive_bias)**2) * sign(attr+ave)
+        ```
       - Turning: Compute left/right delta signals from b and send to HybridTurningController.
     - Outputs (in outputs/olfaction_simulation):
       - olfaction_env.png: snapshot of the arena after stabilization.
