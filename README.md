@@ -49,6 +49,7 @@ Refer to [neuromechcraft](https://github.com/jason-s-yu/neuromechcraft)
       - Stabilization: 500 steps of zero control to settle the fly.
       - Decision: At each interval, read obs["odor_intensity"] for attractive and aversive channels, reshape into (2 sensor types × 2 sides), compute weighted averages, then asymmetry bias:
 
+
       ```sh
       attractive_bias = G_attr * (I_left - I_right) / I_mean
       aversive_bias   = G_ave * (I_left - I_right) / I_mean
