@@ -122,7 +122,35 @@ Refer to [neuromechcraft](https://github.com/jason-s-yu/neuromechcraft)
       - Very similar to olfaction_mineRL_integration_test.py but with a lower speed clamp (min 0.1) and no CSV logging or plots.
       - Collects fly/odor trajectories in memory, then exits.
     - Status: Blueprint for a proper test suite; should be refactored into real unit tests with assertions and remove MineRL dependency.
+  
+5. olfaction_movement.py
+    - Purpose: Latest iteration of the MineRL‐integrated MechFly simulation, targeting the CreateVillageAnimalPen-v0 BASALT task.
+    - Setup & env:
+      - env = gym.make('MineRLBasaltCreateVillageAnimalPen-v0'); obs = env.reset().
+      - Initializes fly_position & a wandering 3D odor_position.
+      - Configurable decay_rate and optional noise.
+    - Control loop (up to 1000 steps):
+      1. Odor movement: Random walk for odor_position (with simple obstacle‐jump stub).
+      2. Intensity: exp(-decay_rate·distance) ± noise.
+      3. MechFly update: Same ±45° logic & speed clamp to [0.25, 1.0].
+      4. MineRL action:
       
+      ```sh
+      action = env.action_space.no_op()
+      action['camera'] = [0, yaw_change_deg]
+      action['forward'], action['back'] = (1,0) if speed>0 else (0,1)
+      action['jump'] = 1
+      obs, reward, done, info = env.step(action)
+      ```
+      
+      5. Render & position update: Uses info['position'] if available; else approximates.
+      6. Sync & log: Sleeps to cap at 20 FPS, writes to simulation_log.csv, and appends to in‑memory trajectories.
+      7. Break on done.
+    - Visualization:
+      - After env.close(), converts trajectories to NumPy, and:
+        - Plots X–Z agent vs. odor → outputs/agent.png.
+        - Plots intensity vs. step → outputs/odor.png.
+        
 ## Neuromechfly Olfaction & Movement Principles
 1. Signal comparison: Each antenna/palp pair yields a 2 × 2 intensity array (attractive vs. aversive × left vs. right).
 2. Bias calculation: Differences between left/right means drive a signed bias, scaled by separate gains (G_attr, G_ave).
