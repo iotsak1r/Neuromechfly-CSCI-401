@@ -73,9 +73,9 @@ Refer to [neuromechcraft](https://github.com/jason-s-yu/neuromechcraft)
         - vision_bias = G_vis * (B_left - B_right) / B_mean.
       3. Combined bias:
          
-      ```sh
-      combined_bias = tanh(olfaction_bias + vision_bias)
-      ```
+        ```sh
+        combined_bias = tanh(olfaction_bias + vision_bias)
+        ```
       
       4. Turning & movement: map combined_bias to motor commands and step the physics.
     - Outputs:
@@ -89,18 +89,18 @@ Refer to [neuromechcraft](https://github.com/jason-s-yu/neuromechcraft)
       - Calls gym.make('MineRLBasaltFindCave-v0') and env.reset().
       - Simulates a moving odor point in 3D; computes exponential‑decay intensity with optional noise:
       
-      ```sh
-      intensity = exp(-decay_rate * distance)
-      ```
+        ```sh
+        intensity = exp(-decay_rate * distance)
+        ```
       
       - Uses MechFlySimulator.update() (random ±45° turn on drop; speed = 2×intensity, clamped to [0.25, 1.0]).
       - Converts heading & speed into MineRL actions (camera, forward/back, jump), steps & renders the env.
     - Logging & outputs:
       - Writes simulation_log.csv with header:
       
-      ```sh
-      time,fly_x,fly_y,fly_z,odor_x,odor_y,odor_z,intensity
-      ```
+        ```sh
+        time,fly_x,fly_y,fly_z,odor_x,odor_y,odor_z,intensity
+        ```
       
     - After exit, produces in outputs/:
       - agent.png: X–Z trajectory of agent vs odor source.
@@ -108,9 +108,9 @@ Refer to [neuromechcraft](https://github.com/jason-s-yu/neuromechcraft)
     - Intended workflow (WIP):
       1. VillagerTracker mod writes /run/villager_positions.json each server tick:
       
-      ```sh
-      [{"name":"Villager","x":…,"y":…,"z":…}, …]
-      ```
+        ```sh
+        [{"name":"Villager","x":…,"y":…,"z":…}, …]
+        ```
       
       2. Script reads that JSON (json.load(...)), computes per‑villager intensities, updates MechFlySimulator.
       3. Issues new MineRL actions for closed‑loop integration.
@@ -134,13 +134,13 @@ Refer to [neuromechcraft](https://github.com/jason-s-yu/neuromechcraft)
       3. MechFly update: Same ±45° logic & speed clamp to [0.25, 1.0].
       4. MineRL action:
       
-      ```sh
-      action = env.action_space.no_op()
-      action['camera'] = [0, yaw_change_deg]
-      action['forward'], action['back'] = (1,0) if speed>0 else (0,1)
-      action['jump'] = 1
-      obs, reward, done, info = env.step(action)
-      ```
+        ```sh
+        action = env.action_space.no_op()
+        action['camera'] = [0, yaw_change_deg]
+        action['forward'], action['back'] = (1,0) if speed>0 else (0,1)
+        action['jump'] = 1
+        obs, reward, done, info = env.step(action)
+        ```
       
       5. Render & position update: Uses info['position'] if available; else approximates.
       6. Sync & log: Sleeps to cap at 20 FPS, writes to simulation_log.csv, and appends to in‑memory trajectories.
